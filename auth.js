@@ -94,6 +94,8 @@ function criarTelaAutenticacao() {
                         id="authNovaSenha"
                         placeholder="Digite sua senha"
                         autocomplete="new-password"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                     >
 
                     <label>
@@ -105,6 +107,8 @@ function criarTelaAutenticacao() {
                         id="authConfirmarSenha"
                         placeholder="Digite novamente"
                         autocomplete="new-password"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                     >
 
                     <button
@@ -131,6 +135,8 @@ function criarTelaAutenticacao() {
                         id="authSenha"
                         placeholder="Digite sua senha"
                         autocomplete="current-password"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                     >
 
                     <button
