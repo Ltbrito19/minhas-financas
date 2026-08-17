@@ -1095,6 +1095,10 @@ function atualizarTelaBancos() {
 
             `;
 
+            // 🔥 AQUI ESTÁ A LINHA QUE FALTAVA
+            item.addEventListener("click", () => {
+                editarBanco(banco.id);
+            });
 
             lista.appendChild(
                 item
