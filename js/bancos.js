@@ -168,7 +168,7 @@ window.renderizarBancos = function renderizarBancos() {
     bancos.forEach(banco => {
 
         const item = document.createElement("div");
-        item.className = "lancamento";
+        item.className = "item-banco";
 
         const saldo = Number(banco.saldo) || 0;
         const classeSaldo = saldo < 0 ? "saida" : "entrada";
