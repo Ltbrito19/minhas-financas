@@ -881,22 +881,18 @@ function mostrarLembretes() {
 // =====================================================
 
 function mostrarBancos() {
-    
+
     telaInicio.hidden =
         true;
-
 
     telaResumo.hidden =
         true;
 
-
     telaExportar.hidden =
         true;
 
-
     telaLembretes.hidden =
         true;
-
 
     telaBancos.hidden =
         false;
@@ -906,30 +902,205 @@ function mostrarBancos() {
         "ativo"
     );
 
-
     btnMenuResumo.classList.remove(
         "ativo"
     );
-
 
     btnMenuExcel.classList.remove(
         "ativo"
     );
 
-
     btnMenuLembretes.classList.remove(
         "ativo"
     );
-
 
     btnMenuBancos.classList.add(
         "ativo"
     );
 
 
+    atualizarTelaBancos();
+
+
     window.scrollTo(
         0,
         0
+    );
+
+}
+
+
+// =====================================================
+// ATUALIZAR TELA DOS BANCOS
+// =====================================================
+
+function atualizarTelaBancos() {
+
+    const lista =
+        document.getElementById(
+            "listaBancos"
+        );
+
+    const quantidade =
+        document.getElementById(
+            "quantidadeBancos"
+        );
+
+    const total =
+        document.getElementById(
+            "totalBancos"
+        );
+
+
+    if (
+        !lista
+    ) {
+
+        return;
+
+    }
+
+
+    const bancos =
+        obterBancos();
+
+
+    // =============================================
+    // QUANTIDADE
+    // =============================================
+
+    if (
+        quantidade
+    ) {
+
+        quantidade.textContent =
+            bancos.length;
+
+    }
+
+
+    // =============================================
+    // TOTAL
+    // =============================================
+
+    if (
+        total
+    ) {
+
+        total.textContent =
+            formatarSaldoBanco(
+                obterTotalBancos()
+            );
+
+    }
+
+
+    // =============================================
+    // NENHUM BANCO
+    // =============================================
+
+    if (
+        bancos.length === 0
+    ) {
+
+        lista.innerHTML = `
+
+            <div
+                class="vazio"
+                id="mensagemBancosVazia"
+            >
+
+                <div class="icone-vazio">
+                    🏦
+                </div>
+
+                <h3>
+                    Nenhum banco cadastrado
+                </h3>
+
+                <p>
+                    Adicione seu primeiro banco
+                    para acompanhar o saldo.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // =============================================
+    // MOSTRAR BANCOS
+    // =============================================
+
+    lista.innerHTML = "";
+
+
+    bancos.forEach(
+        banco => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "lancamento";
+
+
+            const saldo =
+                Number(
+                    banco.saldo
+                ) || 0;
+
+
+            const classeSaldo =
+                saldo < 0
+                    ? "saida"
+                    : "entrada";
+
+
+            item.innerHTML = `
+
+                <div
+                    class="lancamento-icone"
+                >
+                    🏦
+                </div>
+
+
+                <div
+                    class="lancamento-info"
+                >
+
+                    <strong>
+                        ${escaparTextoBanco(
+                            banco.nome
+                        )}
+                    </strong>
+
+                    <small
+                        class="${classeSaldo}"
+                    >
+                        ${formatarSaldoBanco(
+                            saldo
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(
+                item
+            );
+
+        }
     );
 
 }
@@ -992,13 +1163,6 @@ function abrirNovoBanco() {
         saldoDigitado.trim();
 
 
-    // =============================================
-    // ACEITAR FORMATOS:
-    // 1500
-    // 1500,50
-    // 1.500,50
-    // =============================================
-
     saldoTexto =
         saldoTexto.replace(
             /R\$/gi,
@@ -1042,7 +1206,7 @@ function abrirNovoBanco() {
 
 
     // =============================================
-    // SALVAR
+    // SALVAR BANCO
     // =============================================
 
     adicionarBanco(
@@ -1051,30 +1215,13 @@ function abrirNovoBanco() {
     );
 
 
-    alert(
-        "Bancos gravados: " +
-        obterBancos().length
-    );
+    // =============================================
+    // ATUALIZAR TELA
+    // =============================================
 
-    
-    try {
+    atualizarTelaBancos();
 
-        window.renderizarBancos();
-    
-    }
-    catch (erro) {
-    
-        console.error(
-            "Erro ao renderizar bancos:",
-            erro
-        );
-    
-        alert(
-            "Erro ao mostrar os bancos:\n\n" +
-            erro.message
-        );
-    
-    }
+}
 
 
     // =============================================
