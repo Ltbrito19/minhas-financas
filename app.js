@@ -1059,7 +1059,7 @@ function abrirNovoBanco() {
     
     try {
 
-        renderizarBancos();
+        window.renderizarBancos();
     
     }
     catch (erro) {
