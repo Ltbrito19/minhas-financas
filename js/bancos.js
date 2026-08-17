@@ -191,3 +191,6 @@ window.renderizarBancos = function renderizarBancos() {
         lista.appendChild(item);
     });
 };
+
+console.log("BANCOS.JS CARREGADO");
+
