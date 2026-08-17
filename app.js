@@ -1142,26 +1142,7 @@ function abrirNovoBanco() {
 
     atualizarTelaBancos();  // <-- ESTA É A LINHA CORRETA
 }
-
-
-    // =============================================
-    // SALVAR BANCO
-    // =============================================
-
-    adicionarBanco(
-        nomeBanco,
-        saldoNumerico
-    );
-
-
-    // =============================================
-    // ATUALIZAR TELA
-    // =============================================
-
-    atualizarTelaBancos();
-
-}
-
+ 
 
 // =====================================================
 // DATA
