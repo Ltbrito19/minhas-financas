@@ -63,6 +63,7 @@ let tituloModal;
 
 let btnNovoLancamento;
 let btnFecharModal;
+let btnNovoBanco;
 let btnEntrada;
 let btnSaida;
 let btnSalvar;
@@ -187,6 +188,12 @@ function configurarElementos() {
     telaBancos =
         document.getElementById(
             "telaBancos"
+        );
+
+
+    btnNovoBanco =
+        document.getElementById(
+            "btnNovoBanco"
         );
 
 
@@ -659,6 +666,12 @@ function configurarNavegacao() {
         "click",
         mostrarInicio
     );
+
+
+    btnNovoBanco.addEventListener(
+        "click",
+        abrirNovoBanco
+    );
     
 }
 
@@ -918,6 +931,99 @@ function mostrarBancos() {
         0,
         0
     );
+
+}
+
+
+// =====================================================
+// NOVO BANCO
+// =====================================================
+
+function abrirNovoBanco() {
+
+    const nome =
+        prompt(
+            "Digite o nome do banco:"
+        );
+
+
+    if (
+        nome === null
+    ) {
+
+        return;
+
+    }
+
+
+    const nomeBanco =
+        nome.trim();
+
+
+    if (
+        nomeBanco === ""
+    ) {
+
+        alert(
+            "Digite o nome do banco."
+        );
+
+        return;
+
+    }
+
+
+    const saldo =
+        prompt(
+            "Digite o saldo atual do banco:"
+        );
+
+
+    if (
+        saldo === null
+    ) {
+
+        return;
+
+    }
+
+
+    const saldoNumerico =
+        Number(
+            saldo
+                .replace(
+                    /\./g,
+                    ""
+                )
+                .replace(
+                    ",",
+                    "."
+                )
+        );
+
+
+    if (
+        isNaN(
+            saldoNumerico
+        )
+    ) {
+
+        alert(
+            "Digite um saldo válido."
+        );
+
+        return;
+
+    }
+
+
+    adicionarBanco(
+        nomeBanco,
+        saldoNumerico
+    );
+
+
+    renderizarBancos();
 
 }
 
