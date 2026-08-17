@@ -2,8 +2,8 @@
 =====================================================
 MINHAS FINANÇAS
 database.js
-Responsável pelo armazenamento dos lançamentos
-e dos lembretes
+Responsável pelo armazenamento dos lançamentos,
+lembretes e bancos
 =====================================================
 */
 
@@ -18,6 +18,10 @@ const DB_CHAVE =
 
 const DB_LEMBRETES_CHAVE =
     "minhas_financas_lembretes";
+
+
+const DB_BANCOS_CHAVE =
+    "minhas_financas_bancos";
 
 
 // =====================================================
@@ -348,6 +352,241 @@ function limparTodosLembretes() {
 
     localStorage.removeItem(
         DB_LEMBRETES_CHAVE
+    );
+
+}
+
+
+// =====================================================
+// BANCOS
+// =====================================================
+// Os bancos possuem armazenamento completamente
+// separado dos lançamentos e dos lembretes.
+//
+// O saldo bancário é apenas INFORMATIVO.
+// Ele NÃO participa dos cálculos de entradas,
+// saídas ou saldo dos lançamentos.
+// =====================================================
+
+
+function obterBancos() {
+
+    const dados =
+        localStorage.getItem(
+            DB_BANCOS_CHAVE
+        );
+
+
+    if (!dados) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        const bancos =
+            JSON.parse(
+                dados
+            );
+
+
+        if (
+            !Array.isArray(
+                bancos
+            )
+        ) {
+
+            return [];
+
+        }
+
+
+        return bancos;
+
+    }
+
+    catch (
+        erro
+    ) {
+
+        console.error(
+            "Erro ao carregar bancos:",
+            erro
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+// =====================================================
+// SALVAR BANCOS
+// =====================================================
+
+function salvarBancos(
+    bancos
+) {
+
+    localStorage.setItem(
+
+        DB_BANCOS_CHAVE,
+
+        JSON.stringify(
+            bancos
+        )
+
+    );
+
+}
+
+
+// =====================================================
+// ADICIONAR BANCO
+// =====================================================
+
+function adicionarBanco(
+    banco
+) {
+
+    const bancos =
+        obterBancos();
+
+
+    bancos.push(
+        banco
+    );
+
+
+    salvarBancos(
+        bancos
+    );
+
+
+    return banco;
+
+}
+
+
+// =====================================================
+// ATUALIZAR BANCO
+// =====================================================
+
+function atualizarBanco(
+    id,
+    dadosAtualizados
+) {
+
+    const bancos =
+        obterBancos();
+
+
+    const indice =
+        bancos.findIndex(
+            item =>
+                item.id === id
+        );
+
+
+    if (
+        indice === -1
+    ) {
+
+        return false;
+
+    }
+
+
+    bancos[indice] = {
+
+        ...bancos[indice],
+
+        ...dadosAtualizados
+
+    };
+
+
+    salvarBancos(
+        bancos
+    );
+
+
+    return true;
+
+}
+
+
+// =====================================================
+// EXCLUIR BANCO
+// =====================================================
+
+function excluirBanco(
+    id
+) {
+
+    const bancos =
+        obterBancos();
+
+
+    const novosBancos =
+        bancos.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    if (
+        novosBancos.length ===
+        bancos.length
+    ) {
+
+        return false;
+
+    }
+
+
+    salvarBancos(
+        novosBancos
+    );
+
+
+    return true;
+
+}
+
+
+// =====================================================
+// OBTER BANCO POR ID
+// =====================================================
+
+function obterBancoPorId(
+    id
+) {
+
+    const bancos =
+        obterBancos();
+
+
+    return bancos.find(
+        item =>
+            item.id === id
+    );
+
+}
+
+
+// =====================================================
+// LIMPAR TODOS OS BANCOS
+// =====================================================
+
+function limparTodosBancos() {
+
+    localStorage.removeItem(
+        DB_BANCOS_CHAVE
     );
 
 }
