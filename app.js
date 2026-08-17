@@ -56,6 +56,7 @@ let telaInicio;
 let telaResumo;
 let telaExportar;
 let telaLembretes;
+let telaBancos;
 
 let modal;
 let tituloModal;
@@ -100,11 +101,13 @@ let btnMenuResumo;
 let btnMenuExcel;
 let btnMenuLembretes;
 let btnMenuBackup;
+let btnMenuBancos;
 
 let btnResumoTopo;
 let btnVoltarInicio;
 let btnVoltarInicioExportar;
 let btnVoltarInicioLembretes;
+let btnVoltarInicioBancos;
 
 let exportarPeriodo;
 let exportarTipo;
@@ -178,6 +181,12 @@ function configurarElementos() {
     telaLembretes =
         document.getElementById(
             "telaLembretes"
+        );
+
+
+    telaBancos =
+        document.getElementById(
+            "telaBancos"
         );
 
 
@@ -395,8 +404,14 @@ function configurarElementos() {
         document.getElementById(
             "btnMenuLembretes"
         );
-
-
+    
+    
+    btnMenuBancos =
+        document.getElementById(
+            "btnMenuBancos"
+        );
+    
+    
     btnMenuBackup =
         document.getElementById(
             "btnMenuBackup"
@@ -424,6 +439,11 @@ function configurarElementos() {
     btnVoltarInicioLembretes =
         document.getElementById(
             "btnVoltarInicioLembretes"
+        );
+
+    btnVoltarInicioBancos =
+        document.getElementById(
+            "btnVoltarInicioBancos"
         );
 
 
@@ -605,6 +625,12 @@ function configurarNavegacao() {
     );
 
 
+    btnMenuBancos.addEventListener(
+        "click",
+        mostrarBancos
+    );
+
+
     btnResumoTopo.addEventListener(
         "click",
         mostrarResumo
@@ -627,7 +653,13 @@ function configurarNavegacao() {
         "click",
         mostrarInicio
     );
-
+    
+    
+    btnVoltarInicioBancos.addEventListener(
+        "click",
+        mostrarInicio
+    );
+    
 }
 
 
@@ -646,6 +678,10 @@ function mostrarInicio() {
         true;
 
 
+    telaBancos.hidden =
+        true;
+    
+    
     btnMenuInicio.classList.add(
         "ativo"
     );
@@ -659,6 +695,10 @@ function mostrarInicio() {
     );
 
     btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
         "ativo"
     );
 
@@ -688,6 +728,9 @@ function mostrarResumo() {
     telaLembretes.hidden =
         true;
 
+    telaBancos.hidden =
+        true;
+
 
     btnMenuInicio.classList.remove(
         "ativo"
@@ -702,6 +745,10 @@ function mostrarResumo() {
     );
 
     btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
         "ativo"
     );
 
@@ -728,6 +775,9 @@ function mostrarExportar() {
     telaLembretes.hidden =
         true;
 
+    telaBancos.hidden =
+        true;
+
 
     btnMenuInicio.classList.remove(
         "ativo"
@@ -742,6 +792,10 @@ function mostrarExportar() {
     );
 
     btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
         "ativo"
     );
 
@@ -771,6 +825,9 @@ function mostrarLembretes() {
     telaLembretes.hidden =
         false;
 
+    telaBancos.hidden =
+        true;
+
 
     btnMenuInicio.classList.remove(
         "ativo"
@@ -788,10 +845,73 @@ function mostrarLembretes() {
         "ativo"
     );
 
+    btnMenuBancos.classList.remove(
+        "ativo"
+    );
+
 
     renderizarLembretes();
 
     atualizarIndicadorLembretes();
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+// =====================================================
+// TELA BANCOS
+// =====================================================
+
+function mostrarBancos() {
+
+    telaInicio.hidden =
+        true;
+
+
+    telaResumo.hidden =
+        true;
+
+
+    telaExportar.hidden =
+        true;
+
+
+    telaLembretes.hidden =
+        true;
+
+
+    telaBancos.hidden =
+        false;
+
+
+    btnMenuInicio.classList.remove(
+        "ativo"
+    );
+
+
+    btnMenuResumo.classList.remove(
+        "ativo"
+    );
+
+
+    btnMenuExcel.classList.remove(
+        "ativo"
+    );
+
+
+    btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+
+    btnMenuBancos.classList.add(
+        "ativo"
+    );
 
 
     window.scrollTo(
