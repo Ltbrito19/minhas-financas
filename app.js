@@ -1112,97 +1112,36 @@ function atualizarTelaBancos() {
 
 function abrirNovoBanco() {
 
-    const nome =
-        prompt(
-            "Digite o nome do banco:"
-        );
+    const nome = prompt("Digite o nome do banco:");
 
+    if (nome === null) return;
 
-    if (
-        nome === null
-    ) {
+    const nomeBanco = nome.trim();
 
+    if (nomeBanco === "") {
+        alert("Digite o nome do banco.");
         return;
-
     }
 
+    const saldoDigitado = prompt("Digite o saldo atual do banco:");
 
-    const nomeBanco =
-        nome.trim();
+    if (saldoDigitado === null) return;
 
+    let saldoTexto = saldoDigitado.trim();
+    saldoTexto = saldoTexto.replace(/R\$/gi, "").trim();
+    saldoTexto = saldoTexto.replace(/\./g, "");
+    saldoTexto = saldoTexto.replace(",", ".");
+    const saldoNumerico = Number(saldoTexto);
 
-    if (
-        nomeBanco === ""
-    ) {
-
-        alert(
-            "Digite o nome do banco."
-        );
-
+    if (isNaN(saldoNumerico)) {
+        alert("Digite um saldo válido.");
         return;
-
     }
 
+    adicionarBanco(nomeBanco, saldoNumerico);
 
-    const saldoDigitado =
-        prompt(
-            "Digite o saldo atual do banco:"
-        );
-
-
-    if (
-        saldoDigitado === null
-    ) {
-
-        return;
-
-    }
-
-
-    let saldoTexto =
-        saldoDigitado.trim();
-
-
-    saldoTexto =
-        saldoTexto.replace(
-            /R\$/gi,
-            ""
-        ).trim();
-
-
-    saldoTexto =
-        saldoTexto.replace(
-            /\./g,
-            ""
-        );
-
-
-    saldoTexto =
-        saldoTexto.replace(
-            ",",
-            "."
-        );
-
-
-    const saldoNumerico =
-        Number(
-            saldoTexto
-        );
-
-
-    if (
-        isNaN(
-            saldoNumerico
-        )
-    ) {
-
-        alert(
-            "Digite um saldo válido."
-        );
-
-        return;
-
-    }
+    atualizarTelaBancos();  // <-- ESTA É A LINHA CORRETA
+}
 
 
     // =============================================
@@ -1220,15 +1159,6 @@ function abrirNovoBanco() {
     // =============================================
 
     atualizarTelaBancos();
-
-}
-
-
-    // =============================================
-    // ATUALIZAR A TELA
-    // =============================================
-
-    renderizarBancos();
 
 }
 
