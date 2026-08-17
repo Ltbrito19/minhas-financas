@@ -1,3 +1,5 @@
+alert("BANCOS.JS FOI CARREGADO");
+
 /*
 =====================================================
 MINHAS FINANÇAS
