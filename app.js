@@ -1057,7 +1057,24 @@ function abrirNovoBanco() {
     );
 
     
-    renderizarBancos();
+    try {
+
+        renderizarBancos();
+    
+    }
+    catch (erro) {
+    
+        console.error(
+            "Erro ao renderizar bancos:",
+            erro
+        );
+    
+        alert(
+            "Erro ao mostrar os bancos:\n\n" +
+            erro.message
+        );
+    
+    }
 
 
     // =============================================
