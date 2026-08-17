@@ -1,5 +1,3 @@
-alert("BANCOS.JS FOI CARREGADO");
-
 /*
 =====================================================
 MINHAS FINANÇAS
@@ -21,6 +19,7 @@ const DB_BANCOS_CHAVE =
 // OBTER BANCOS
 // =====================================================
 
+window.obterBancos =
 function obterBancos() {
 
     const dados =
@@ -73,13 +72,14 @@ function obterBancos() {
 
     }
 
-}
+};
 
 
 // =====================================================
 // SALVAR BANCOS
 // =====================================================
 
+window.salvarBancos =
 function salvarBancos(
     bancos
 ) {
@@ -94,42 +94,47 @@ function salvarBancos(
 
     );
 
-}
+};
 
 
 // =====================================================
 // GERAR ID
 // =====================================================
 
+window.gerarIdBanco =
 function gerarIdBanco() {
 
     return (
+
         Date.now().toString() +
+
         Math.random()
             .toString(36)
             .substring(2, 8)
+
     );
 
-}
+};
 
 
 // =====================================================
 // ADICIONAR BANCO
 // =====================================================
 
+window.adicionarBanco =
 function adicionarBanco(
     nome,
     saldo = 0
 ) {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     const banco = {
 
         id:
-            gerarIdBanco(),
+            window.gerarIdBanco(),
 
         nome:
             String(
@@ -149,27 +154,28 @@ function adicionarBanco(
     );
 
 
-    salvarBancos(
+    window.salvarBancos(
         bancos
     );
 
 
     return banco;
 
-}
+};
 
 
 // =====================================================
 // ATUALIZAR BANCO
 // =====================================================
 
+window.atualizarBanco =
 function atualizarBanco(
     id,
     dadosAtualizados
 ) {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     const indice =
@@ -210,26 +216,27 @@ function atualizarBanco(
     }
 
 
-    salvarBancos(
+    window.salvarBancos(
         bancos
     );
 
 
     return true;
 
-}
+};
 
 
 // =====================================================
 // ALTERAR SALDO
 // =====================================================
 
+window.alterarSaldoBanco =
 function alterarSaldoBanco(
     id,
     novoSaldo
 ) {
 
-    return atualizarBanco(
+    return window.atualizarBanco(
 
         id,
 
@@ -244,19 +251,20 @@ function alterarSaldoBanco(
 
     );
 
-}
+};
 
 
 // =====================================================
 // EXCLUIR BANCO
 // =====================================================
 
+window.excluirBanco =
 function excluirBanco(
     id
 ) {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     const novosBancos =
@@ -276,26 +284,27 @@ function excluirBanco(
     }
 
 
-    salvarBancos(
+    window.salvarBancos(
         novosBancos
     );
 
 
     return true;
 
-}
+};
 
 
 // =====================================================
 // OBTER BANCO POR ID
 // =====================================================
 
+window.obterBancoPorId =
 function obterBancoPorId(
     id
 ) {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     return bancos.find(
@@ -303,17 +312,18 @@ function obterBancoPorId(
             banco.id === id
     );
 
-}
+};
 
 
 // =====================================================
 // CALCULAR TOTAL DOS BANCOS
 // =====================================================
 
+window.obterTotalBancos =
 function obterTotalBancos() {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     return bancos.reduce(
@@ -324,12 +334,15 @@ function obterTotalBancos() {
         ) => {
 
             return (
+
                 total +
+
                 (
                     Number(
                         banco.saldo
                     ) || 0
                 )
+
             );
 
         },
@@ -338,20 +351,20 @@ function obterTotalBancos() {
 
     );
 
-}
+};
 
 
 // =====================================================
 // FORMATAR VALOR
 // =====================================================
 
+window.formatarSaldoBanco =
 function formatarSaldoBanco(
     valor
 ) {
 
     return Number(
-        valor
-    || 0
+        valor || 0
     ).toLocaleString(
 
         "pt-BR",
@@ -368,13 +381,50 @@ function formatarSaldoBanco(
 
     );
 
-}
+};
+
+
+// =====================================================
+// ESCAPAR TEXTO
+// =====================================================
+
+window.escaparTextoBanco =
+function escaparTextoBanco(
+    texto
+) {
+
+    return String(
+        texto
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+};
 
 
 // =====================================================
 // RENDERIZAR BANCOS
 // =====================================================
 
+window.renderizarBancos =
 function renderizarBancos() {
 
     const lista =
@@ -399,13 +449,17 @@ function renderizarBancos() {
         !lista
     ) {
 
+        console.warn(
+            "Elemento listaBancos não encontrado."
+        );
+
         return;
 
     }
 
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     // =============================================
@@ -431,8 +485,8 @@ function renderizarBancos() {
     ) {
 
         total.textContent =
-            formatarSaldoBanco(
-                obterTotalBancos()
+            window.formatarSaldoBanco(
+                window.obterTotalBancos()
             );
 
     }
@@ -522,7 +576,7 @@ function renderizarBancos() {
                 >
 
                     <strong>
-                        ${escaparTextoBanco(
+                        ${window.escaparTextoBanco(
                             banco.nome
                         )}
                     </strong>
@@ -530,7 +584,7 @@ function renderizarBancos() {
                     <small
                         class="${classeSaldo}"
                     >
-                        ${formatarSaldoBanco(
+                        ${window.formatarSaldoBanco(
                             saldo
                         )}
                     </small>
@@ -554,54 +608,21 @@ function renderizarBancos() {
             );
 
         }
+
     );
 
-}
-
-
-// =====================================================
-// ESCAPAR TEXTO
-// =====================================================
-
-function escaparTextoBanco(
-    texto
-) {
-
-    return String(
-        texto
-    )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
+};
 
 
 // =====================================================
 // INICIALIZAR BANCOS PADRÃO
 // =====================================================
 
+window.inicializarBancosPadrao =
 function inicializarBancosPadrao() {
 
     const bancos =
-        obterBancos();
+        window.obterBancos();
 
 
     if (
@@ -669,7 +690,7 @@ function inicializarBancosPadrao() {
             banco => ({
 
                 id:
-                    gerarIdBanco(),
+                    window.gerarIdBanco(),
 
                 nome:
                     banco.nome,
@@ -682,43 +703,8 @@ function inicializarBancosPadrao() {
         );
 
 
-    salvarBancos(
+    window.salvarBancos(
         novosBancos
     );
 
-}
-
-
-// =====================================================
-// DISPONIBILIZAR FUNÇÕES PARA O APP
-// =====================================================
-
-window.obterBancos =
-    obterBancos;
-
-window.salvarBancos =
-    salvarBancos;
-
-window.adicionarBanco =
-    adicionarBanco;
-
-window.atualizarBanco =
-    atualizarBanco;
-
-window.alterarSaldoBanco =
-    alterarSaldoBanco;
-
-window.excluirBanco =
-    excluirBanco;
-
-window.obterBancoPorId =
-    obterBancoPorId;
-
-window.obterTotalBancos =
-    obterTotalBancos;
-
-window.renderizarBancos =
-    renderizarBancos;
-
-window.inicializarBancosPadrao =
-    inicializarBancosPadrao;
+};
