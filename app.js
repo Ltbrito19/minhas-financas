@@ -1051,6 +1051,15 @@ function abrirNovoBanco() {
     );
 
 
+    alert(
+        "Bancos gravados: " +
+        obterBancos().length
+    );
+
+    
+    renderizarBancos();
+
+
     // =============================================
     // ATUALIZAR A TELA
     // =============================================
