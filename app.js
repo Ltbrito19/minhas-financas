@@ -868,12 +868,7 @@ function mostrarLembretes() {
 // =====================================================
 
 function mostrarBancos() {
-
-    inicializarBancosPadrao();
-
-    renderizarBancos();
-
-
+    
     telaInicio.hidden =
         true;
 
