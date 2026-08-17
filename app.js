@@ -973,14 +973,14 @@ function abrirNovoBanco() {
     }
 
 
-    const saldo =
+    const saldoDigitado =
         prompt(
             "Digite o saldo atual do banco:"
         );
 
 
     if (
-        saldo === null
+        saldoDigitado === null
     ) {
 
         return;
@@ -988,17 +988,41 @@ function abrirNovoBanco() {
     }
 
 
+    let saldoTexto =
+        saldoDigitado.trim();
+
+
+    // =============================================
+    // ACEITAR FORMATOS:
+    // 1500
+    // 1500,50
+    // 1.500,50
+    // =============================================
+
+    saldoTexto =
+        saldoTexto.replace(
+            /R\$/gi,
+            ""
+        ).trim();
+
+
+    saldoTexto =
+        saldoTexto.replace(
+            /\./g,
+            ""
+        );
+
+
+    saldoTexto =
+        saldoTexto.replace(
+            ",",
+            "."
+        );
+
+
     const saldoNumerico =
         Number(
-            saldo
-                .replace(
-                    /\./g,
-                    ""
-                )
-                .replace(
-                    ",",
-                    "."
-                )
+            saldoTexto
         );
 
 
@@ -1017,11 +1041,19 @@ function abrirNovoBanco() {
     }
 
 
+    // =============================================
+    // SALVAR
+    // =============================================
+
     adicionarBanco(
         nomeBanco,
         saldoNumerico
     );
 
+
+    // =============================================
+    // ATUALIZAR A TELA
+    // =============================================
 
     renderizarBancos();
 
