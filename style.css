@@ -359,7 +359,7 @@ button {
 
     display: flex;
 
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
     padding-bottom: env(safe-area-inset-bottom);
@@ -378,9 +378,15 @@ button {
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 3px;
 
-    min-width: 70px;
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 0 2px;
 }
 
 .menu-item span {
