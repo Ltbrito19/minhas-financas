@@ -6,7 +6,7 @@ Funcionamento offline
 =====================================================
 */
 
-const CACHE_NAME = "minhas-financas-v1";
+const CACHE_NAME = "minhas-financas-v2";
 
 
 const ARQUIVOS = [
@@ -20,6 +20,11 @@ const ARQUIVOS = [
     "./js/resumo.js",
     "./js/filtros.js",
     "./js/exportar.js",
+    "./js/backup.js",
+    "./js/lembretes.js",
+    "./js/bancos.js",
+
+    "./auth.js",
 
     "./manifest.json"
 ];
