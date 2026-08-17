@@ -687,3 +687,38 @@ function inicializarBancosPadrao() {
     );
 
 }
+
+
+// =====================================================
+// DISPONIBILIZAR FUNÇÕES PARA O APP
+// =====================================================
+
+window.obterBancos =
+    obterBancos;
+
+window.salvarBancos =
+    salvarBancos;
+
+window.adicionarBanco =
+    adicionarBanco;
+
+window.atualizarBanco =
+    atualizarBanco;
+
+window.alterarSaldoBanco =
+    alterarSaldoBanco;
+
+window.excluirBanco =
+    excluirBanco;
+
+window.obterBancoPorId =
+    obterBancoPorId;
+
+window.obterTotalBancos =
+    obterTotalBancos;
+
+window.renderizarBancos =
+    renderizarBancos;
+
+window.inicializarBancosPadrao =
+    inicializarBancosPadrao;
