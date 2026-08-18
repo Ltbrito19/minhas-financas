@@ -636,8 +636,15 @@ function configurarNavegacao() {
         "click",
         mostrarBancos
     );
-
-
+    
+    
+    // 🔥 AGORA O BACKUP FUNCIONA
+    btnMenuBackup.addEventListener(
+        "click", 
+        mostrarBackup
+    );
+    
+    
     btnResumoTopo.addEventListener(
         "click",
         mostrarResumo
@@ -673,6 +680,26 @@ function configurarNavegacao() {
         abrirNovoBanco
     );
     
+}
+
+
+function mostrarBackup() {
+
+    telaInicio.hidden = true;
+    telaResumo.hidden = true;
+    telaExportar.hidden = true;
+    telaLembretes.hidden = true;
+    telaBancos.hidden = true;   // <-- ESSENCIAL
+    telaBackup.hidden = false;  // <-- MOSTRA APENAS O BACKUP
+
+    btnMenuInicio.classList.remove("ativo");
+    btnMenuResumo.classList.remove("ativo");
+    btnMenuExcel.classList.remove("ativo");
+    btnMenuLembretes.classList.remove("ativo");
+    btnMenuBancos.classList.remove("ativo");
+    btnMenuBackup.classList.add("ativo");
+
+    window.scrollTo(0, 0);
 }
 
 
@@ -1038,79 +1065,54 @@ function atualizarTelaBancos() {
     // =============================================
     // MOSTRAR BANCOS
     // =============================================
-
+    
     lista.innerHTML = "";
-
-
-    bancos.forEach(
-        banco => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "lancamento";
-
-
-            const saldo =
-                Number(
-                    banco.saldo
-                ) || 0;
-
-
-            const classeSaldo =
-                saldo < 0
-                    ? "saida"
-                    : "entrada";
-
-
-            item.innerHTML = `
-
-                <div
-                    class="lancamento-icone"
-                >
-                    🏦
-                </div>
-
-
-                <div
-                    class="lancamento-info"
-                >
-
-                    <strong>
-                        ${escaparTextoBanco(
-                            banco.nome
-                        )}
-                    </strong>
-
-                    <small
-                        class="${classeSaldo}"
-                    >
-                        ${formatarSaldoBanco(
-                            saldo
-                        )}
-                    </small>
-
-                </div>
-
-            `;
-
-            // 🔥 AQUI ESTÁ A LINHA QUE FALTAVA
-            item.addEventListener("click", () => {
-                editarBanco(banco.id);
-            });
-
-            lista.appendChild(
-                item
-            );
-
-        }
-    );
-
-}
+    
+    bancos.forEach(banco => {
+    
+        const item = document.createElement("div");
+        item.className = "lancamento";
+    
+        const saldo = Number(banco.saldo) || 0;
+        const classeSaldo = saldo < 0 ? "saida" : "entrada";
+    
+        item.innerHTML = `
+            <div class="lancamento-icone">🏦</div>
+    
+            <div class="lancamento-info">
+                <strong>${escaparTextoBanco(banco.nome)}</strong>
+                <small class="${classeSaldo}">
+                    ${formatarSaldoBanco(saldo)}
+                </small>
+            </div>
+        `;
+    
+        // 🔥 EDITAR BANCO AO CLICAR NO ITEM
+        item.addEventListener("click", () => {
+            editarBanco(banco.id);
+        });
+    
+        // 🔥 BOTÃO EXCLUIR BANCO
+        const btnExcluir = document.createElement("button");
+        btnExcluir.textContent = "Excluir";
+        btnExcluir.className = "btn-excluir-banco";
+    
+        btnExcluir.addEventListener("click", (e) => {
+            e.stopPropagation(); // impede abrir edição
+    
+            const confirmar = confirm("Excluir este banco?");
+            if (confirmar) {
+                excluirBanco(banco.id);
+                atualizarTelaBancos();
+            }
+        });
+    
+        // 🔥 ADICIONA O BOTÃO AO ITEM
+        item.appendChild(btnExcluir);
+    
+        // 🔥 ADICIONA O ITEM À LISTA
+        lista.appendChild(item);
+    });
 
 
 // =====================================================
