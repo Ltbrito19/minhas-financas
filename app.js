@@ -599,8 +599,6 @@ function configurarElementos() {
             "badgeLembretes"
         );
 
-}
-
 
 // =====================================================
 // NAVEGAÇÃO
