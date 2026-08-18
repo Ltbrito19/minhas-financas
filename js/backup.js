@@ -129,14 +129,7 @@ function validarArquivoBackup(dados) {
         return { valido: false, mensagem: "O backup não possui uma lista válida de lançamentos." };
     }
 
-    if (!Array.isArray(dados.bancos)) {
-        return { valido: false, mensagem: "O backup não possui uma lista válida de bancos." };
-    }
-
-    if (!Array.isArray(dados.lembretes)) {
-        return { valido: false, mensagem: "O backup não possui uma lista válida de lembretes." };
-    }
-
+    // Bancos e lembretes são opcionais para compatibilidade com backups antigos
     return { valido: true, mensagem: "Backup válido." };
 }
 
@@ -170,7 +163,7 @@ function lerArquivoBackup(arquivo) {
 
 
 // =====================================================
-// RESTAURAR BACKUP (VERSÃO 2.0)
+// RESTAURAR BACKUP (COMPATÍVEL COM V1 E V2)
 // =====================================================
 
 async function restaurarBackup(arquivo) {
@@ -186,21 +179,28 @@ async function restaurarBackup(arquivo) {
             return false;
         }
 
+        // 🔥 Compatibilidade com backups antigos (v1)
+        const lancamentos = Array.isArray(dados.lancamentos) ? dados.lancamentos : [];
+
+        // Se o backup não tiver bancos/lembretes, cria listas vazias
+        const bancos = Array.isArray(dados.bancos) ? dados.bancos : [];
+        const lembretes = Array.isArray(dados.lembretes) ? dados.lembretes : [];
+
         const confirmar = confirm(
             "Este backup possui:\n\n" +
-            dados.lancamentos.length + " lançamento(s)\n" +
-            dados.bancos.length + " banco(s)\n" +
-            dados.lembretes.length + " lembrete(s)\n\n" +
+            lancamentos.length + " lançamento(s)\n" +
+            bancos.length + " banco(s)\n" +
+            lembretes.length + " lembrete(s)\n\n" +
             "Ao restaurar, TODOS os dados atuais serão substituídos.\n\n" +
             "Deseja continuar?"
         );
 
         if (!confirmar) return false;
 
-        // 🔥 RESTAURAÇÃO COMPLETA
-        salvarLancamentos(dados.lancamentos);
-        salvarBancos(dados.bancos);
-        salvarLembretes(dados.lembretes);
+        // 🔥 RESTAURAÇÃO COMPLETA (com fallback para backups antigos)
+        salvarLancamentos(lancamentos);
+        salvarBancos(bancos);
+        salvarLembretes(lembretes);
 
         alert("Backup restaurado com sucesso.");
 
