@@ -57,6 +57,7 @@ let telaResumo;
 let telaExportar;
 let telaLembretes;
 let telaBancos;
+let telaBackup;   // <-- ADICIONAR
 
 let modal;
 let tituloModal;
@@ -182,6 +183,12 @@ function configurarElementos() {
     telaLembretes =
         document.getElementById(
             "telaLembretes"
+        );
+
+    
+    telaBackup =
+        document.getElementById(
+            "telaBackup"
         );
 
 
