@@ -162,357 +162,85 @@ let badgeLembretes;
 
 function configurarElementos() {
 
-    telaInicio =
-        document.getElementById(
-            "telaInicio"
-        );
-
-
-    telaResumo =
-        document.getElementById(
-            "telaResumo"
-        );
-
-
-    telaExportar =
-        document.getElementById(
-            "telaExportar"
-        );
-
-
-    telaLembretes =
-        document.getElementById(
-            "telaLembretes"
-        );
-
-    
-    telaBackup =
-        document.getElementById(
-            "telaBackup"
-        );
-
-
-    telaBancos =
-        document.getElementById(
-            "telaBancos"
-        );
-
-
-    btnNovoBanco =
-        document.getElementById(
-            "btnNovoBanco"
-        );
-
-
-    modal =
-        document.getElementById(
-            "modalLancamento"
-        );
-
-
-    tituloModal =
-        document.getElementById(
-            "tituloModal"
-        );
-
-
-    btnNovoLancamento =
-        document.getElementById(
-            "btnNovoLancamento"
-        );
-
-
-    btnFecharModal =
-        document.getElementById(
-            "btnFecharModal"
-        );
-
-
-    btnEntrada =
-        document.getElementById(
-            "btnEntrada"
-        );
-
-
-    btnSaida =
-        document.getElementById(
-            "btnSaida"
-        );
-
-
-    btnSalvar =
-        document.getElementById(
-            "btnSalvar"
-        );
-
-
-    btnExcluir =
-        document.getElementById(
-            "btnExcluir"
-        );
-
-
-    valorInput =
-        document.getElementById(
-            "valor"
-        );
-
-
-    descricaoInput =
-        document.getElementById(
-            "descricao"
-        );
-
-
-    categoriaInput =
-        document.getElementById(
-            "categoria"
-        );
-
-
-    pagamentoInput =
-        document.getElementById(
-            "pagamento"
-        );
-
-
-    dataInput =
-        document.getElementById(
-            "data"
-        );
-
-
-    observacaoInput =
-        document.getElementById(
-            "observacao"
-        );
-
-
-    listaLancamentos =
-        document.getElementById(
-            "listaLancamentos"
-        );
-
-
-    mensagemVazia =
-        document.getElementById(
-            "mensagemVazia"
-        );
-
-
-    totalEntradas =
-        document.getElementById(
-            "totalEntradas"
-        );
-
-
-    totalSaidas =
-        document.getElementById(
-            "totalSaidas"
-        );
-
-
-    saldo =
-        document.getElementById(
-            "saldo"
-        );
-
-
-    quantidadeLancamentos =
-        document.getElementById(
-            "quantidadeLancamentos"
-        );
-
-
-    resumoSaldo =
-        document.getElementById(
-            "resumoSaldo"
-        );
-
-
-    resumoEntradas =
-        document.getElementById(
-            "resumoEntradas"
-        );
-
-
-    resumoSaidas =
-        document.getElementById(
-            "resumoSaidas"
-        );
-
-
-    resumoCategorias =
-        document.getElementById(
-            "resumoCategorias"
-        );
-
-
-    resumoPagamentos =
-        document.getElementById(
-            "resumoPagamentos"
-        );
-
-
-    mesResumo =
-        document.getElementById(
-            "mesResumo"
-        );
-
-
-    filtroPeriodo =
-        document.getElementById(
-            "filtroPeriodo"
-        );
-
-
-    filtroTipo =
-        document.getElementById(
-            "filtroTipo"
-        );
-
-
-    datasPersonalizadas =
-        document.getElementById(
-            "datasPersonalizadas"
-        );
-
-
-    filtroDataInicial =
-        document.getElementById(
-            "filtroDataInicial"
-        );
-
-
-    filtroDataFinal =
-        document.getElementById(
-            "filtroDataFinal"
-        );
-
-
-    btnLimparFiltros =
-        document.getElementById(
-            "btnLimparFiltros"
-        );
-
-
-    btnMenuInicio =
-        document.getElementById(
-            "btnMenuInicio"
-        );
-
-
-    btnMenuResumo =
-        document.getElementById(
-            "btnMenuResumo"
-        );
-
-
-    btnMenuExcel =
-        document.getElementById(
-            "btnMenuExcel"
-        );
-
-
-    btnMenuLembretes =
-        document.getElementById(
-            "btnMenuLembretes"
-        );
-    
-    
-    btnMenuBancos =
-        document.getElementById(
-            "btnMenuBancos"
-        );
-    
-    
-    btnMenuBackup =
-        document.getElementById(
-            "btnMenuBackup"
-        );
-
-
-    btnResumoTopo =
-        document.getElementById(
-            "btnResumoTopo"
-        );
-
-
-    btnVoltarInicio =
-        document.getElementById(
-            "btnVoltarInicio"
-        );
-
-
-    btnVoltarInicioExportar =
-        document.getElementById(
-            "btnVoltarInicioExportar"
-        );
-
-
-    btnVoltarInicioLembretes =
-        document.getElementById(
-            "btnVoltarInicioLembretes"
-        );
-
-    btnVoltarInicioBancos =
-        document.getElementById(
-            "btnVoltarInicioBancos"
-        );
-
-
-    exportarPeriodo =
-        document.getElementById(
-            "exportarPeriodo"
-        );
-
-
-    exportarTipo =
-        document.getElementById(
-            "exportarTipo"
-        );
-
-
-    exportarDatasPersonalizadas =
-        document.getElementById(
-            "exportarDatasPersonalizadas"
-        );
-
-
-    exportarDataInicial =
-        document.getElementById(
-            "exportarDataInicial"
-        );
-
-
-    exportarDataFinal =
-        document.getElementById(
-            "exportarDataFinal"
-        );
-
-
-    exportarQuantidade =
-        document.getElementById(
-            "exportarQuantidade"
-        );
-
-
-    exportarPeriodoTexto =
-        document.getElementById(
-            "exportarPeriodoTexto"
-        );
-
-
-    btnGerarExcel =
-        document.getElementById(
-            "btnGerarExcel"
-        );
-
-
-    mensagemExportacao =
-        document.getElementById(
-            "mensagemExportacao"
-        );
+    telaInicio = document.getElementById("telaInicio");
+    telaResumo = document.getElementById("telaResumo");
+    telaExportar = document.getElementById("telaExportar");
+    telaLembretes = document.getElementById("telaLembretes");
+    telaBackup = document.getElementById("telaBackup");   // <-- OK
+    telaBancos = document.getElementById("telaBancos");
+
+    btnNovoBanco = document.getElementById("btnNovoBanco");
+
+    modal = document.getElementById("modalLancamento");
+    tituloModal = document.getElementById("tituloModal");
+
+    btnNovoLancamento = document.getElementById("btnNovoLancamento");
+    btnFecharModal = document.getElementById("btnFecharModal");
+    btnEntrada = document.getElementById("btnEntrada");
+    btnSaida = document.getElementById("btnSaida");
+    btnSalvar = document.getElementById("btnSalvar");
+    btnExcluir = document.getElementById("btnExcluir");
+
+    valorInput = document.getElementById("valor");
+    descricaoInput = document.getElementById("descricao");
+    categoriaInput = document.getElementById("categoria");
+    pagamentoInput = document.getElementById("pagamento");
+    dataInput = document.getElementById("data");
+    observacaoInput = document.getElementById("observacao");
+
+    listaLancamentos = document.getElementById("listaLancamentos");
+    mensagemVazia = document.getElementById("mensagemVazia");
+
+    totalEntradas = document.getElementById("totalEntradas");
+    totalSaidas = document.getElementById("totalSaidas");
+    saldo = document.getElementById("saldo");
+    quantidadeLancamentos = document.getElementById("quantidadeLancamentos");
+
+    resumoSaldo = document.getElementById("resumoSaldo");
+    resumoEntradas = document.getElementById("resumoEntradas");
+    resumoSaidas = document.getElementById("resumoSaidas");
+    resumoCategorias = document.getElementById("resumoCategorias");
+    resumoPagamentos = document.getElementById("resumoPagamentos");
+    mesResumo = document.getElementById("mesResumo");
+
+    filtroPeriodo = document.getElementById("filtroPeriodo");
+    filtroTipo = document.getElementById("filtroTipo");
+    datasPersonalizadas = document.getElementById("datasPersonalizadas");
+    filtroDataInicial = document.getElementById("filtroDataInicial");
+    filtroDataFinal = document.getElementById("filtroDataFinal");
+    btnLimparFiltros = document.getElementById("btnLimparFiltros");
+
+    btnMenuInicio = document.getElementById("btnMenuInicio");
+    btnMenuResumo = document.getElementById("btnMenuResumo");
+    btnMenuExcel = document.getElementById("btnMenuExcel");
+    btnMenuLembretes = document.getElementById("btnMenuLembretes");
+    btnMenuBancos = document.getElementById("btnMenuBancos");
+    btnMenuBackup = document.getElementById("btnMenuBackup");
+
+    btnResumoTopo = document.getElementById("btnResumoTopo");
+    btnVoltarInicio = document.getElementById("btnVoltarInicio");
+    btnVoltarInicioExportar = document.getElementById("btnVoltarInicioExportar");
+    btnVoltarInicioLembretes = document.getElementById("btnVoltarInicioLembretes");
+    btnVoltarInicioBancos = document.getElementById("btnVoltarInicioBancos");
+
+    exportarPeriodo = document.getElementById("exportarPeriodo");
+    exportarTipo = document.getElementById("exportarTipo");
+    exportarDatasPersonalizadas = document.getElementById("exportarDatasPersonalizadas");
+    exportarDataInicial = document.getElementById("exportarDataInicial");
+    exportarDataFinal = document.getElementById("exportarDataFinal");
+    exportarQuantidade = document.getElementById("exportarQuantidade");
+    exportarPeriodoTexto = document.getElementById("exportarPeriodoTexto");
+    btnGerarExcel = document.getElementById("btnGerarExcel");
+    mensagemExportacao = document.getElementById("mensagemExportacao");
+
+    // =====================================================
+    // ELEMENTOS DO BACKUP (NOVOS)
+    // =====================================================
+
+    btnExportarBackup = document.getElementById("btnExportarBackup");
+    btnRestaurarBackup = document.getElementById("btnRestaurarBackup");
+    inputRestaurarBackup = document.getElementById("inputRestaurarBackup");
+}
 
 
     // =================================================
@@ -615,298 +343,40 @@ function configurarElementos() {
 
 function configurarNavegacao() {
 
-    btnMenuInicio.addEventListener(
-        "click",
-        mostrarInicio
-    );
-
-
-    btnMenuResumo.addEventListener(
-        "click",
-        mostrarResumo
-    );
-
-
-    btnMenuExcel.addEventListener(
-        "click",
-        mostrarExportar
-    );
-
-
-    btnMenuLembretes.addEventListener(
-        "click",
-        mostrarLembretes
-    );
-
-
-    btnMenuBancos.addEventListener(
-        "click",
-        mostrarBancos
-    );
-    
-    
-    // 🔥 AGORA O BACKUP FUNCIONA
-    btnMenuBackup.addEventListener(
-        "click", 
-        mostrarBackup
-    );
-    
-    
-    btnResumoTopo.addEventListener(
-        "click",
-        mostrarResumo
-    );
-
-
-    btnVoltarInicio.addEventListener(
-        "click",
-        mostrarInicio
-    );
-
-
-    btnVoltarInicioExportar.addEventListener(
-        "click",
-        mostrarInicio
-    );
-
-
-    btnVoltarInicioLembretes.addEventListener(
-        "click",
-        mostrarInicio
-    );
-    
-    
-    btnVoltarInicioBancos.addEventListener(
-        "click",
-        mostrarInicio
-    );
-
-
-    btnNovoBanco.addEventListener(
-        "click",
-        abrirNovoBanco
-    );
-    
-}
-
-
-function mostrarBackup() {
-
-    telaInicio.hidden = true;
-    telaResumo.hidden = true;
-    telaExportar.hidden = true;
-    telaLembretes.hidden = true;
-    telaBancos.hidden = true;   // <-- ESSENCIAL
-    telaBackup.hidden = false;  // <-- MOSTRA APENAS O BACKUP
-
-    btnMenuInicio.classList.remove("ativo");
-    btnMenuResumo.classList.remove("ativo");
-    btnMenuExcel.classList.remove("ativo");
-    btnMenuLembretes.classList.remove("ativo");
-    btnMenuBancos.classList.remove("ativo");
-    btnMenuBackup.classList.add("ativo");
-
-    window.scrollTo(0, 0);
-}
-
-
-function mostrarInicio() {
-
-    telaInicio.hidden =
-        false;
-
-    telaResumo.hidden =
-        true;
-
-    telaExportar.hidden =
-        true;
-
-    telaLembretes.hidden =
-        true;
-
-
-    telaBancos.hidden =
-        true;
-    
-    
-    btnMenuInicio.classList.add(
-        "ativo"
-    );
-
-    btnMenuResumo.classList.remove(
-        "ativo"
-    );
-
-    btnMenuExcel.classList.remove(
-        "ativo"
-    );
-
-    btnMenuLembretes.classList.remove(
-        "ativo"
-    );
-
-    btnMenuBancos.classList.remove(
-        "ativo"
-    );
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-function mostrarResumo() {
-
-    atualizarResumoCompleto();
-
-
-    telaInicio.hidden =
-        true;
-
-    telaResumo.hidden =
-        false;
-
-    telaExportar.hidden =
-        true;
-
-    telaLembretes.hidden =
-        true;
-
-    telaBancos.hidden =
-        true;
-
-
-    btnMenuInicio.classList.remove(
-        "ativo"
-    );
-
-    btnMenuResumo.classList.add(
-        "ativo"
-    );
-
-    btnMenuExcel.classList.remove(
-        "ativo"
-    );
-
-    btnMenuLembretes.classList.remove(
-        "ativo"
-    );
-
-    btnMenuBancos.classList.remove(
-        "ativo"
-    );
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-function mostrarExportar() {
-
-    telaInicio.hidden =
-        true;
-
-    telaResumo.hidden =
-        true;
-
-    telaExportar.hidden =
-        false;
-
-    telaLembretes.hidden =
-        true;
-
-    telaBancos.hidden =
-        true;
-
-
-    btnMenuInicio.classList.remove(
-        "ativo"
-    );
-
-    btnMenuResumo.classList.remove(
-        "ativo"
-    );
-
-    btnMenuExcel.classList.add(
-        "ativo"
-    );
-
-    btnMenuLembretes.classList.remove(
-        "ativo"
-    );
-
-    btnMenuBancos.classList.remove(
-        "ativo"
-    );
-
-
-    atualizarPreviaExportacao();
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-function mostrarLembretes() {
-
-    telaInicio.hidden =
-        true;
-
-    telaResumo.hidden =
-        true;
-
-    telaExportar.hidden =
-        true;
-
-    telaLembretes.hidden =
-        false;
-
-    telaBancos.hidden =
-        true;
-
-
-    btnMenuInicio.classList.remove(
-        "ativo"
-    );
-
-    btnMenuResumo.classList.remove(
-        "ativo"
-    );
-
-    btnMenuExcel.classList.remove(
-        "ativo"
-    );
-
-    btnMenuLembretes.classList.add(
-        "ativo"
-    );
-
-    btnMenuBancos.classList.remove(
-        "ativo"
-    );
-
-
-    renderizarLembretes();
-
-    atualizarIndicadorLembretes();
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
+    btnMenuInicio.addEventListener("click", mostrarInicio);
+    btnMenuResumo.addEventListener("click", mostrarResumo);
+    btnMenuExcel.addEventListener("click", mostrarExportar);
+    btnMenuLembretes.addEventListener("click", mostrarLembretes);
+    btnMenuBancos.addEventListener("click", mostrarBancos);
+
+    // 🔥 BACKUP
+    btnMenuBackup.addEventListener("click", mostrarBackup);
+
+    btnResumoTopo.addEventListener("click", mostrarResumo);
+    btnVoltarInicio.addEventListener("click", mostrarInicio);
+    btnVoltarInicioExportar.addEventListener("click", mostrarInicio);
+    btnVoltarInicioLembretes.addEventListener("click", mostrarInicio);
+    btnVoltarInicioBancos.addEventListener("click", mostrarInicio);
+
+    btnNovoBanco.addEventListener("click", abrirNovoBanco);
+
+    // =====================================================
+    // EVENTOS DO BACKUP (NOVOS)
+    // =====================================================
+
+    // Criar backup
+    btnExportarBackup.addEventListener("click", exportarBackup);
+
+    // Abrir seletor de arquivo
+    btnRestaurarBackup.addEventListener("click", () => {
+        inputRestaurarBackup.click();
+    });
+
+    // Restaurar backup ao selecionar arquivo
+    inputRestaurarBackup.addEventListener("change", evento => {
+        const arquivo = evento.target.files[0];
+        if (arquivo) restaurarBackup(arquivo);
+    });
 }
 
 
