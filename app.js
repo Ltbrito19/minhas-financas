@@ -57,7 +57,6 @@ let telaResumo;
 let telaExportar;
 let telaLembretes;
 let telaBancos;
-let telaBackup;   // <-- ADICIONAR
 
 let modal;
 let tituloModal;
@@ -162,85 +161,351 @@ let badgeLembretes;
 
 function configurarElementos() {
 
-    telaInicio = document.getElementById("telaInicio");
-    telaResumo = document.getElementById("telaResumo");
-    telaExportar = document.getElementById("telaExportar");
-    telaLembretes = document.getElementById("telaLembretes");
-    telaBackup = document.getElementById("telaBackup");   // <-- OK
-    telaBancos = document.getElementById("telaBancos");
+    telaInicio =
+        document.getElementById(
+            "telaInicio"
+        );
 
-    btnNovoBanco = document.getElementById("btnNovoBanco");
 
-    modal = document.getElementById("modalLancamento");
-    tituloModal = document.getElementById("tituloModal");
+    telaResumo =
+        document.getElementById(
+            "telaResumo"
+        );
 
-    btnNovoLancamento = document.getElementById("btnNovoLancamento");
-    btnFecharModal = document.getElementById("btnFecharModal");
-    btnEntrada = document.getElementById("btnEntrada");
-    btnSaida = document.getElementById("btnSaida");
-    btnSalvar = document.getElementById("btnSalvar");
-    btnExcluir = document.getElementById("btnExcluir");
 
-    valorInput = document.getElementById("valor");
-    descricaoInput = document.getElementById("descricao");
-    categoriaInput = document.getElementById("categoria");
-    pagamentoInput = document.getElementById("pagamento");
-    dataInput = document.getElementById("data");
-    observacaoInput = document.getElementById("observacao");
+    telaExportar =
+        document.getElementById(
+            "telaExportar"
+        );
 
-    listaLancamentos = document.getElementById("listaLancamentos");
-    mensagemVazia = document.getElementById("mensagemVazia");
 
-    totalEntradas = document.getElementById("totalEntradas");
-    totalSaidas = document.getElementById("totalSaidas");
-    saldo = document.getElementById("saldo");
-    quantidadeLancamentos = document.getElementById("quantidadeLancamentos");
+    telaLembretes =
+        document.getElementById(
+            "telaLembretes"
+        );
 
-    resumoSaldo = document.getElementById("resumoSaldo");
-    resumoEntradas = document.getElementById("resumoEntradas");
-    resumoSaidas = document.getElementById("resumoSaidas");
-    resumoCategorias = document.getElementById("resumoCategorias");
-    resumoPagamentos = document.getElementById("resumoPagamentos");
-    mesResumo = document.getElementById("mesResumo");
 
-    filtroPeriodo = document.getElementById("filtroPeriodo");
-    filtroTipo = document.getElementById("filtroTipo");
-    datasPersonalizadas = document.getElementById("datasPersonalizadas");
-    filtroDataInicial = document.getElementById("filtroDataInicial");
-    filtroDataFinal = document.getElementById("filtroDataFinal");
-    btnLimparFiltros = document.getElementById("btnLimparFiltros");
+    telaBancos =
+        document.getElementById(
+            "telaBancos"
+        );
 
-    btnMenuInicio = document.getElementById("btnMenuInicio");
-    btnMenuResumo = document.getElementById("btnMenuResumo");
-    btnMenuExcel = document.getElementById("btnMenuExcel");
-    btnMenuLembretes = document.getElementById("btnMenuLembretes");
-    btnMenuBancos = document.getElementById("btnMenuBancos");
-    btnMenuBackup = document.getElementById("btnMenuBackup");
 
-    btnResumoTopo = document.getElementById("btnResumoTopo");
-    btnVoltarInicio = document.getElementById("btnVoltarInicio");
-    btnVoltarInicioExportar = document.getElementById("btnVoltarInicioExportar");
-    btnVoltarInicioLembretes = document.getElementById("btnVoltarInicioLembretes");
-    btnVoltarInicioBancos = document.getElementById("btnVoltarInicioBancos");
+    btnNovoBanco =
+        document.getElementById(
+            "btnNovoBanco"
+        );
 
-    exportarPeriodo = document.getElementById("exportarPeriodo");
-    exportarTipo = document.getElementById("exportarTipo");
-    exportarDatasPersonalizadas = document.getElementById("exportarDatasPersonalizadas");
-    exportarDataInicial = document.getElementById("exportarDataInicial");
-    exportarDataFinal = document.getElementById("exportarDataFinal");
-    exportarQuantidade = document.getElementById("exportarQuantidade");
-    exportarPeriodoTexto = document.getElementById("exportarPeriodoTexto");
-    btnGerarExcel = document.getElementById("btnGerarExcel");
-    mensagemExportacao = document.getElementById("mensagemExportacao");
 
-    // =====================================================
-    // ELEMENTOS DO BACKUP (NOVOS)
-    // =====================================================
+    modal =
+        document.getElementById(
+            "modalLancamento"
+        );
 
-    btnExportarBackup = document.getElementById("btnExportarBackup");
-    btnRestaurarBackup = document.getElementById("btnRestaurarBackup");
-    inputRestaurarBackup = document.getElementById("inputRestaurarBackup");
-}
+
+    tituloModal =
+        document.getElementById(
+            "tituloModal"
+        );
+
+
+    btnNovoLancamento =
+        document.getElementById(
+            "btnNovoLancamento"
+        );
+
+
+    btnFecharModal =
+        document.getElementById(
+            "btnFecharModal"
+        );
+
+
+    btnEntrada =
+        document.getElementById(
+            "btnEntrada"
+        );
+
+
+    btnSaida =
+        document.getElementById(
+            "btnSaida"
+        );
+
+
+    btnSalvar =
+        document.getElementById(
+            "btnSalvar"
+        );
+
+
+    btnExcluir =
+        document.getElementById(
+            "btnExcluir"
+        );
+
+
+    valorInput =
+        document.getElementById(
+            "valor"
+        );
+
+
+    descricaoInput =
+        document.getElementById(
+            "descricao"
+        );
+
+
+    categoriaInput =
+        document.getElementById(
+            "categoria"
+        );
+
+
+    pagamentoInput =
+        document.getElementById(
+            "pagamento"
+        );
+
+
+    dataInput =
+        document.getElementById(
+            "data"
+        );
+
+
+    observacaoInput =
+        document.getElementById(
+            "observacao"
+        );
+
+
+    listaLancamentos =
+        document.getElementById(
+            "listaLancamentos"
+        );
+
+
+    mensagemVazia =
+        document.getElementById(
+            "mensagemVazia"
+        );
+
+
+    totalEntradas =
+        document.getElementById(
+            "totalEntradas"
+        );
+
+
+    totalSaidas =
+        document.getElementById(
+            "totalSaidas"
+        );
+
+
+    saldo =
+        document.getElementById(
+            "saldo"
+        );
+
+
+    quantidadeLancamentos =
+        document.getElementById(
+            "quantidadeLancamentos"
+        );
+
+
+    resumoSaldo =
+        document.getElementById(
+            "resumoSaldo"
+        );
+
+
+    resumoEntradas =
+        document.getElementById(
+            "resumoEntradas"
+        );
+
+
+    resumoSaidas =
+        document.getElementById(
+            "resumoSaidas"
+        );
+
+
+    resumoCategorias =
+        document.getElementById(
+            "resumoCategorias"
+        );
+
+
+    resumoPagamentos =
+        document.getElementById(
+            "resumoPagamentos"
+        );
+
+
+    mesResumo =
+        document.getElementById(
+            "mesResumo"
+        );
+
+
+    filtroPeriodo =
+        document.getElementById(
+            "filtroPeriodo"
+        );
+
+
+    filtroTipo =
+        document.getElementById(
+            "filtroTipo"
+        );
+
+
+    datasPersonalizadas =
+        document.getElementById(
+            "datasPersonalizadas"
+        );
+
+
+    filtroDataInicial =
+        document.getElementById(
+            "filtroDataInicial"
+        );
+
+
+    filtroDataFinal =
+        document.getElementById(
+            "filtroDataFinal"
+        );
+
+
+    btnLimparFiltros =
+        document.getElementById(
+            "btnLimparFiltros"
+        );
+
+
+    btnMenuInicio =
+        document.getElementById(
+            "btnMenuInicio"
+        );
+
+
+    btnMenuResumo =
+        document.getElementById(
+            "btnMenuResumo"
+        );
+
+
+    btnMenuExcel =
+        document.getElementById(
+            "btnMenuExcel"
+        );
+
+
+    btnMenuLembretes =
+        document.getElementById(
+            "btnMenuLembretes"
+        );
+    
+    
+    btnMenuBancos =
+        document.getElementById(
+            "btnMenuBancos"
+        );
+    
+    
+    btnMenuBackup =
+        document.getElementById(
+            "btnMenuBackup"
+        );
+
+
+    btnResumoTopo =
+        document.getElementById(
+            "btnResumoTopo"
+        );
+
+
+    btnVoltarInicio =
+        document.getElementById(
+            "btnVoltarInicio"
+        );
+
+
+    btnVoltarInicioExportar =
+        document.getElementById(
+            "btnVoltarInicioExportar"
+        );
+
+
+    btnVoltarInicioLembretes =
+        document.getElementById(
+            "btnVoltarInicioLembretes"
+        );
+
+    btnVoltarInicioBancos =
+        document.getElementById(
+            "btnVoltarInicioBancos"
+        );
+
+
+    exportarPeriodo =
+        document.getElementById(
+            "exportarPeriodo"
+        );
+
+
+    exportarTipo =
+        document.getElementById(
+            "exportarTipo"
+        );
+
+
+    exportarDatasPersonalizadas =
+        document.getElementById(
+            "exportarDatasPersonalizadas"
+        );
+
+
+    exportarDataInicial =
+        document.getElementById(
+            "exportarDataInicial"
+        );
+
+
+    exportarDataFinal =
+        document.getElementById(
+            "exportarDataFinal"
+        );
+
+
+    exportarQuantidade =
+        document.getElementById(
+            "exportarQuantidade"
+        );
+
+
+    exportarPeriodoTexto =
+        document.getElementById(
+            "exportarPeriodoTexto"
+        );
+
+
+    btnGerarExcel =
+        document.getElementById(
+            "btnGerarExcel"
+        );
+
+
+    mensagemExportacao =
+        document.getElementById(
+            "mensagemExportacao"
+        );
 
 
     // =================================================
@@ -334,6 +599,8 @@ function configurarElementos() {
             "badgeLembretes"
         );
 
+}
+
 
 // =====================================================
 // NAVEGAÇÃO
@@ -341,40 +608,271 @@ function configurarElementos() {
 
 function configurarNavegacao() {
 
-    btnMenuInicio.addEventListener("click", mostrarInicio);
-    btnMenuResumo.addEventListener("click", mostrarResumo);
-    btnMenuExcel.addEventListener("click", mostrarExportar);
-    btnMenuLembretes.addEventListener("click", mostrarLembretes);
-    btnMenuBancos.addEventListener("click", mostrarBancos);
+    btnMenuInicio.addEventListener(
+        "click",
+        mostrarInicio
+    );
 
-    // 🔥 BACKUP
-    btnMenuBackup.addEventListener("click", mostrarBackup);
 
-    btnResumoTopo.addEventListener("click", mostrarResumo);
-    btnVoltarInicio.addEventListener("click", mostrarInicio);
-    btnVoltarInicioExportar.addEventListener("click", mostrarInicio);
-    btnVoltarInicioLembretes.addEventListener("click", mostrarInicio);
-    btnVoltarInicioBancos.addEventListener("click", mostrarInicio);
+    btnMenuResumo.addEventListener(
+        "click",
+        mostrarResumo
+    );
 
-    btnNovoBanco.addEventListener("click", abrirNovoBanco);
 
-    // =====================================================
-    // EVENTOS DO BACKUP (NOVOS)
-    // =====================================================
+    btnMenuExcel.addEventListener(
+        "click",
+        mostrarExportar
+    );
 
-    // Criar backup
-    btnExportarBackup.addEventListener("click", exportarBackup);
 
-    // Abrir seletor de arquivo
-    btnRestaurarBackup.addEventListener("click", () => {
-        inputRestaurarBackup.click();
-    });
+    btnMenuLembretes.addEventListener(
+        "click",
+        mostrarLembretes
+    );
 
-    // Restaurar backup ao selecionar arquivo
-    inputRestaurarBackup.addEventListener("change", evento => {
-        const arquivo = evento.target.files[0];
-        if (arquivo) restaurarBackup(arquivo);
-    });
+
+    btnMenuBancos.addEventListener(
+        "click",
+        mostrarBancos
+    );
+
+
+    btnResumoTopo.addEventListener(
+        "click",
+        mostrarResumo
+    );
+
+
+    btnVoltarInicio.addEventListener(
+        "click",
+        mostrarInicio
+    );
+
+
+    btnVoltarInicioExportar.addEventListener(
+        "click",
+        mostrarInicio
+    );
+
+
+    btnVoltarInicioLembretes.addEventListener(
+        "click",
+        mostrarInicio
+    );
+    
+    
+    btnVoltarInicioBancos.addEventListener(
+        "click",
+        mostrarInicio
+    );
+
+
+    btnNovoBanco.addEventListener(
+        "click",
+        abrirNovoBanco
+    );
+    
+}
+
+
+function mostrarInicio() {
+
+    telaInicio.hidden =
+        false;
+
+    telaResumo.hidden =
+        true;
+
+    telaExportar.hidden =
+        true;
+
+    telaLembretes.hidden =
+        true;
+
+
+    telaBancos.hidden =
+        true;
+    
+    
+    btnMenuInicio.classList.add(
+        "ativo"
+    );
+
+    btnMenuResumo.classList.remove(
+        "ativo"
+    );
+
+    btnMenuExcel.classList.remove(
+        "ativo"
+    );
+
+    btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
+        "ativo"
+    );
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+function mostrarResumo() {
+
+    atualizarResumoCompleto();
+
+
+    telaInicio.hidden =
+        true;
+
+    telaResumo.hidden =
+        false;
+
+    telaExportar.hidden =
+        true;
+
+    telaLembretes.hidden =
+        true;
+
+    telaBancos.hidden =
+        true;
+
+
+    btnMenuInicio.classList.remove(
+        "ativo"
+    );
+
+    btnMenuResumo.classList.add(
+        "ativo"
+    );
+
+    btnMenuExcel.classList.remove(
+        "ativo"
+    );
+
+    btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
+        "ativo"
+    );
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+function mostrarExportar() {
+
+    telaInicio.hidden =
+        true;
+
+    telaResumo.hidden =
+        true;
+
+    telaExportar.hidden =
+        false;
+
+    telaLembretes.hidden =
+        true;
+
+    telaBancos.hidden =
+        true;
+
+
+    btnMenuInicio.classList.remove(
+        "ativo"
+    );
+
+    btnMenuResumo.classList.remove(
+        "ativo"
+    );
+
+    btnMenuExcel.classList.add(
+        "ativo"
+    );
+
+    btnMenuLembretes.classList.remove(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
+        "ativo"
+    );
+
+
+    atualizarPreviaExportacao();
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+function mostrarLembretes() {
+
+    telaInicio.hidden =
+        true;
+
+    telaResumo.hidden =
+        true;
+
+    telaExportar.hidden =
+        true;
+
+    telaLembretes.hidden =
+        false;
+
+    telaBancos.hidden =
+        true;
+
+
+    btnMenuInicio.classList.remove(
+        "ativo"
+    );
+
+    btnMenuResumo.classList.remove(
+        "ativo"
+    );
+
+    btnMenuExcel.classList.remove(
+        "ativo"
+    );
+
+    btnMenuLembretes.classList.add(
+        "ativo"
+    );
+
+    btnMenuBancos.classList.remove(
+        "ativo"
+    );
+
+
+    renderizarLembretes();
+
+    atualizarIndicadorLembretes();
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
 }
 
 
@@ -394,9 +892,6 @@ function mostrarBancos() {
         true;
 
     telaLembretes.hidden =
-        true;
-
-    telaBackup.hidden = 
         true;
 
     telaBancos.hidden =
@@ -540,54 +1035,75 @@ function atualizarTelaBancos() {
     // =============================================
     // MOSTRAR BANCOS
     // =============================================
-    
+
     lista.innerHTML = "";
-    
-    bancos.forEach(banco => {
-    
-        const item = document.createElement("div");
-        item.className = "lancamento";
-    
-        const saldo = Number(banco.saldo) || 0;
-        const classeSaldo = saldo < 0 ? "saida" : "entrada";
-    
-        item.innerHTML = `
-            <div class="lancamento-icone">🏦</div>
-    
-            <div class="lancamento-info">
-                <strong>${escaparTextoBanco(banco.nome)}</strong>
-                <small class="${classeSaldo}">
-                    ${formatarSaldoBanco(saldo)}
-                </small>
-            </div>
-        `;
-    
-        // 🔥 EDITAR BANCO AO CLICAR NO ITEM
-        item.addEventListener("click", () => {
-            editarBanco(banco.id);
-        });
-    
-        // 🔥 BOTÃO EXCLUIR BANCO
-        const btnExcluir = document.createElement("button");
-        btnExcluir.textContent = "Excluir";
-        btnExcluir.className = "btn-excluir-banco";
-    
-        btnExcluir.addEventListener("click", (e) => {
-            e.stopPropagation(); // impede abrir edição
-    
-            const confirmar = confirm("Excluir este banco?");
-            if (confirmar) {
-                excluirBanco(banco.id);
-                atualizarTelaBancos();
-            }
-        });
-    
-        // 🔥 ADICIONA O BOTÃO AO ITEM
-        item.appendChild(btnExcluir);
-    
-        // 🔥 ADICIONA O ITEM À LISTA
-        lista.appendChild(item);
-    });
+
+
+    bancos.forEach(
+        banco => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "lancamento";
+
+
+            const saldo =
+                Number(
+                    banco.saldo
+                ) || 0;
+
+
+            const classeSaldo =
+                saldo < 0
+                    ? "saida"
+                    : "entrada";
+
+
+            item.innerHTML = `
+
+                <div
+                    class="lancamento-icone"
+                >
+                    🏦
+                </div>
+
+
+                <div
+                    class="lancamento-info"
+                >
+
+                    <strong>
+                        ${escaparTextoBanco(
+                            banco.nome
+                        )}
+                    </strong>
+
+                    <small
+                        class="${classeSaldo}"
+                    >
+                        ${formatarSaldoBanco(
+                            saldo
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
 
 
 // =====================================================
@@ -596,37 +1112,126 @@ function atualizarTelaBancos() {
 
 function abrirNovoBanco() {
 
-    const nome = prompt("Digite o nome do banco:");
+    const nome =
+        prompt(
+            "Digite o nome do banco:"
+        );
 
-    if (nome === null) return;
 
-    const nomeBanco = nome.trim();
+    if (
+        nome === null
+    ) {
 
-    if (nomeBanco === "") {
-        alert("Digite o nome do banco.");
         return;
+
     }
 
-    const saldoDigitado = prompt("Digite o saldo atual do banco:");
 
-    if (saldoDigitado === null) return;
+    const nomeBanco =
+        nome.trim();
 
-    let saldoTexto = saldoDigitado.trim();
-    saldoTexto = saldoTexto.replace(/R\$/gi, "").trim();
-    saldoTexto = saldoTexto.replace(/\./g, "");
-    saldoTexto = saldoTexto.replace(",", ".");
-    const saldoNumerico = Number(saldoTexto);
 
-    if (isNaN(saldoNumerico)) {
-        alert("Digite um saldo válido.");
+    if (
+        nomeBanco === ""
+    ) {
+
+        alert(
+            "Digite o nome do banco."
+        );
+
         return;
+
     }
 
-    adicionarBanco(nomeBanco, saldoNumerico);
 
-    atualizarTelaBancos();  // <-- ESTA É A LINHA CORRETA
+    const saldoDigitado =
+        prompt(
+            "Digite o saldo atual do banco:"
+        );
+
+
+    if (
+        saldoDigitado === null
+    ) {
+
+        return;
+
+    }
+
+
+    let saldoTexto =
+        saldoDigitado.trim();
+
+
+    saldoTexto =
+        saldoTexto.replace(
+            /R\$/gi,
+            ""
+        ).trim();
+
+
+    saldoTexto =
+        saldoTexto.replace(
+            /\./g,
+            ""
+        );
+
+
+    saldoTexto =
+        saldoTexto.replace(
+            ",",
+            "."
+        );
+
+
+    const saldoNumerico =
+        Number(
+            saldoTexto
+        );
+
+
+    if (
+        isNaN(
+            saldoNumerico
+        )
+    ) {
+
+        alert(
+            "Digite um saldo válido."
+        );
+
+        return;
+
+    }
+
+
+    // =============================================
+    // SALVAR BANCO
+    // =============================================
+
+    adicionarBanco(
+        nomeBanco,
+        saldoNumerico
+    );
+
+
+    // =============================================
+    // ATUALIZAR TELA
+    // =============================================
+
+    atualizarTelaBancos();
+
 }
- 
+
+
+    // =============================================
+    // ATUALIZAR A TELA
+    // =============================================
+
+    renderizarBancos();
+
+}
+
 
 // =====================================================
 // DATA

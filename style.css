@@ -658,14 +658,3 @@ button {
 [hidden] {
     display: none !important;
 }
-
-
-.item-banco {
-    cursor: pointer;
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-}
-
