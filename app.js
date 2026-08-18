@@ -894,6 +894,9 @@ function mostrarBancos() {
     telaLembretes.hidden =
         true;
 
+    telaBackup.hidden = 
+        true;
+
     telaBancos.hidden =
         false;
 
