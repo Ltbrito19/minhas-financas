@@ -93,6 +93,8 @@ let telaLembretes;
 
 let telaBancos;
 
+let telaBackup;
+
 
 // =====================================================
 // ELEMENTOS DO MODAL DE LANÇAMENTO
@@ -320,6 +322,12 @@ function configurarElementos() {
     telaBancos =
         document.getElementById(
             "telaBancos"
+        );
+
+
+    telaBackup =
+        document.getElementById(
+            "telaBackup"
         );
 
 
@@ -955,6 +963,16 @@ function mostrarInicio() {
     }
 
 
+    if (
+        telaBackup
+    ) {
+
+        telaBackup.hidden =
+            true;
+
+    }
+
+
     atualizarMenuAtivo(
         btnMenuInicio
     );
@@ -1022,6 +1040,16 @@ function mostrarResumo() {
     ) {
 
         telaBancos.hidden =
+            true;
+
+    }
+
+
+    if (
+        telaBackup
+    ) {
+
+        telaBackup.hidden =
             true;
 
     }
@@ -1096,6 +1124,16 @@ function mostrarExportar() {
     }
 
 
+    if (
+        telaBackup
+    ) {
+
+        telaBackup.hidden =
+            true;
+
+    }
+
+
     atualizarMenuAtivo(
         btnMenuExcel
     );
@@ -1163,6 +1201,16 @@ function mostrarLembretes() {
     ) {
 
         telaBancos.hidden =
+            true;
+
+    }
+
+
+    if (
+        telaBackup
+    ) {
+
+        telaBackup.hidden =
             true;
 
     }
@@ -1243,6 +1291,16 @@ function mostrarBancos() {
 
         telaBancos.hidden =
             false;
+
+    }
+
+
+    if (
+        telaBackup
+    ) {
+
+        telaBackup.hidden =
+            true;
 
     }
 
