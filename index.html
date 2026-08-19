@@ -1799,6 +1799,12 @@ document.addEventListener(
             );
 
 
+        const telaBancos =
+            document.getElementById(
+                "telaBancos"
+            );
+
+
         const btnMenuInicio =
             document.getElementById(
                 "btnMenuInicio"
@@ -1880,11 +1886,14 @@ document.addEventListener(
             telaExportar.hidden =
                 true;
 
-            telaBackup.hidden =
-                false;
-
             telaLembretes.hidden =
                 true;
+
+            telaBancos.hidden =
+                true;
+
+            telaBackup.hidden =
+                false;
 
 
             btnMenuInicio.classList.remove(
@@ -1900,6 +1909,10 @@ document.addEventListener(
             );
 
             btnMenuLembretes.classList.remove(
+                "ativo"
+            );
+
+            btnMenuBancos.classList.remove(
                 "ativo"
             );
 
@@ -1937,6 +1950,9 @@ document.addEventListener(
             telaLembretes.hidden =
                 true;
 
+            telaBancos.hidden =
+                true;
+
 
             btnMenuInicio.classList.add(
                 "ativo"
@@ -1951,6 +1967,10 @@ document.addEventListener(
             );
 
             btnMenuLembretes.classList.remove(
+                "ativo"
+            );
+
+            btnMenuBancos.classList.remove(
                 "ativo"
             );
 
@@ -1985,6 +2005,9 @@ document.addEventListener(
             telaBackup.hidden =
                 true;
 
+            telaBancos.hidden =
+                true;
+
             telaLembretes.hidden =
                 false;
 
@@ -2002,6 +2025,10 @@ document.addEventListener(
             );
 
             btnMenuBackup.classList.remove(
+                "ativo"
+            );
+
+            btnMenuBancos.classList.remove(
                 "ativo"
             );
 
@@ -2039,6 +2066,9 @@ document.addEventListener(
             telaLembretes.hidden =
                 true;
 
+            telaBancos.hidden =
+                true;
+
 
             btnMenuInicio.classList.add(
                 "ativo"
@@ -2053,6 +2083,10 @@ document.addEventListener(
             );
 
             btnMenuBackup.classList.remove(
+                "ativo"
+            );
+
+            btnMenuBancos.classList.remove(
                 "ativo"
             );
 
