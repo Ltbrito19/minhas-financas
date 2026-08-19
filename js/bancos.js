@@ -2,17 +2,37 @@
 =====================================================
 MINHAS FINANÇAS
 bancos.js
-Controle dos saldos bancários
+Controle dos bancos e saldos bancários
+
+Responsável por:
+- Criar bancos
+- Editar bancos
+- Excluir bancos
+- Alterar saldos
+- Calcular total
+- Renderizar a tela de bancos
+- Inicializar bancos padrão
+
+IMPORTANTE:
+A persistência utiliza as funções do database.js.
+
+A chave "minhas_financas_bancos" permanece
+inalterada para preservar os dados existentes.
 =====================================================
 */
 
 
 // =====================================================
-// CHAVE DO ARMAZENAMENTO
+// ARMAZENAMENTO
 // =====================================================
-
-const DB_BANCOS_CHAVE =
-    "minhas_financas_bancos";
+//
+// O database.js é responsável pelo armazenamento.
+//
+// Aqui NÃO declaramos novamente:
+// const DB_BANCOS_CHAVE
+//
+// Isso evita conflito entre os arquivos JS.
+// =====================================================
 
 
 // =====================================================
@@ -24,11 +44,13 @@ function obterBancos() {
 
     const dados =
         localStorage.getItem(
-            DB_BANCOS_CHAVE
+            "minhas_financas_bancos"
         );
 
 
-    if (!dados) {
+    if (
+        !dados
+    ) {
 
         return [];
 
@@ -86,7 +108,7 @@ function salvarBancos(
 
     localStorage.setItem(
 
-        DB_BANCOS_CHAVE,
+        "minhas_financas_bancos",
 
         JSON.stringify(
             bancos
@@ -98,7 +120,7 @@ function salvarBancos(
 
 
 // =====================================================
-// GERAR ID
+// GERAR ID DO BANCO
 // =====================================================
 
 window.gerarIdBanco =
@@ -127,6 +149,21 @@ function adicionarBanco(
     saldo = 0
 ) {
 
+    const nomeBanco =
+        String(
+            nome || ""
+        ).trim();
+
+
+    if (
+        nomeBanco === ""
+    ) {
+
+        return false;
+
+    }
+
+
     const bancos =
         window.obterBancos();
 
@@ -137,9 +174,7 @@ function adicionarBanco(
             window.gerarIdBanco(),
 
         nome:
-            String(
-                nome
-            ).trim(),
+            nomeBanco,
 
         saldo:
             Number(
@@ -171,7 +206,7 @@ function adicionarBanco(
 window.atualizarBanco =
 function atualizarBanco(
     id,
-    dadosAtualizados
+    dadosAtualizados = {}
 ) {
 
     const bancos =
@@ -181,7 +216,12 @@ function atualizarBanco(
     const indice =
         bancos.findIndex(
             banco =>
-                banco.id === id
+                String(
+                    banco.id
+                ) ===
+                String(
+                    id
+                )
         );
 
 
@@ -194,13 +234,32 @@ function atualizarBanco(
     }
 
 
-    bancos[indice] = {
+    const bancoAtual =
+        bancos[indice];
 
-        ...bancos[indice],
 
-        ...dadosAtualizados
+    const novoNome =
+        dadosAtualizados.nome !==
+        undefined
 
-    };
+            ? String(
+                dadosAtualizados.nome
+              ).trim()
+
+            : bancoAtual.nome;
+
+
+    if (
+        novoNome === ""
+    ) {
+
+        return false;
+
+    }
+
+
+    let novoSaldo =
+        bancoAtual.saldo;
 
 
     if (
@@ -208,12 +267,38 @@ function atualizarBanco(
         undefined
     ) {
 
-        bancos[indice].saldo =
+        novoSaldo =
             Number(
                 dadosAtualizados.saldo
-            ) || 0;
+            );
+
+
+        if (
+            !Number.isFinite(
+                novoSaldo
+            )
+        ) {
+
+            novoSaldo = 0;
+
+        }
 
     }
+
+
+    bancos[indice] = {
+
+        ...bancoAtual,
+
+        ...dadosAtualizados,
+
+        nome:
+            novoNome,
+
+        saldo:
+            novoSaldo
+
+    };
 
 
     window.salvarBancos(
@@ -227,7 +312,7 @@ function atualizarBanco(
 
 
 // =====================================================
-// ALTERAR SALDO
+// ALTERAR SALDO DO BANCO
 // =====================================================
 
 window.alterarSaldoBanco =
@@ -236,6 +321,23 @@ function alterarSaldoBanco(
     novoSaldo
 ) {
 
+    const saldo =
+        Number(
+            novoSaldo
+        );
+
+
+    if (
+        !Number.isFinite(
+            saldo
+        )
+    ) {
+
+        return false;
+
+    }
+
+
     return window.atualizarBanco(
 
         id,
@@ -243,9 +345,7 @@ function alterarSaldoBanco(
         {
 
             saldo:
-                Number(
-                    novoSaldo
-                ) || 0
+                saldo
 
         }
 
@@ -270,7 +370,12 @@ function excluirBanco(
     const novosBancos =
         bancos.filter(
             banco =>
-                banco.id !== id
+                String(
+                    banco.id
+                ) !==
+                String(
+                    id
+                )
         );
 
 
@@ -309,7 +414,12 @@ function obterBancoPorId(
 
     return bancos.find(
         banco =>
-            banco.id === id
+            String(
+                banco.id
+            ) ===
+            String(
+                id
+            )
     );
 
 };
@@ -355,7 +465,7 @@ function obterTotalBancos() {
 
 
 // =====================================================
-// FORMATAR VALOR
+// FORMATAR SALDO
 // =====================================================
 
 window.formatarSaldoBanco =
@@ -394,24 +504,29 @@ function escaparTextoBanco(
 ) {
 
     return String(
-        texto
+        texto ?? ""
     )
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -617,6 +732,14 @@ function renderizarBancos() {
 // =====================================================
 // INICIALIZAR BANCOS PADRÃO
 // =====================================================
+//
+// IMPORTANTE:
+// Só cria os bancos padrão se NÃO EXISTIR nenhum
+// banco salvo.
+//
+// Se já houver bancos, absolutamente nada será
+// alterado.
+// =====================================================
 
 window.inicializarBancosPadrao =
 function inicializarBancosPadrao() {
@@ -708,3 +831,8 @@ function inicializarBancosPadrao() {
     );
 
 };
+
+
+// =====================================================
+// FIM
+// =====================================================
