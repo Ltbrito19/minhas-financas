@@ -2,14 +2,22 @@
 =====================================================
 MINHAS FINANÇAS
 database.js
-Responsável pelo armazenamento dos lançamentos,
-lembretes e bancos
+Camada de armazenamento do aplicativo
+
+Responsável por:
+- Lançamentos
+- Lembretes
+- Bancos
+
+IMPORTANTE:
+Este arquivo NÃO altera os dados existentes.
+As chaves atuais do localStorage são mantidas.
 =====================================================
 */
 
 
 // =====================================================
-// CHAVES DO BANCO
+// CHAVES DO ARMAZENAMENTO
 // =====================================================
 
 const DB_CHAVE =
@@ -20,7 +28,21 @@ const DB_LEMBRETES_CHAVE =
     "minhas_financas_lembretes";
 
 
-const DB_BANCOS_CHAVE =
+/*
+-----------------------------------------------------
+ATENÇÃO
+
+Não utilizar aqui a constante DB_BANCOS_CHAVE.
+
+O arquivo bancos.js possui sua própria referência
+à chave dos bancos.
+
+Isso evita conflito entre os scripts carregados
+pela aplicação.
+-----------------------------------------------------
+*/
+
+const DB_BANCOS_STORAGE_CHAVE =
     "minhas_financas_bancos";
 
 
@@ -28,62 +50,119 @@ const DB_BANCOS_CHAVE =
 // LANÇAMENTOS
 // =====================================================
 
+
+// -----------------------------------------------------
+// OBTER LANÇAMENTOS
+// -----------------------------------------------------
+
 function obterLancamentos() {
 
     const dados =
-        localStorage.getItem(DB_CHAVE);
+        localStorage.getItem(
+            DB_CHAVE
+        );
 
-    if (!dados) {
+
+    if (
+        !dados
+    ) {
+
         return [];
+
     }
+
 
     try {
 
         const lancamentos =
-            JSON.parse(dados);
+            JSON.parse(
+                dados
+            );
 
-        if (!Array.isArray(lancamentos)) {
+
+        if (
+            !Array.isArray(
+                lancamentos
+            )
+        ) {
+
             return [];
+
         }
+
 
         return lancamentos;
 
-    } catch (erro) {
+    }
+
+    catch (
+        erro
+    ) {
 
         console.error(
             "Erro ao carregar lançamentos:",
             erro
         );
 
+
         return [];
+
     }
+
 }
 
 
-function salvarLancamentos(lancamentos) {
+// -----------------------------------------------------
+// SALVAR LANÇAMENTOS
+// -----------------------------------------------------
+
+function salvarLancamentos(
+    lancamentos
+) {
 
     localStorage.setItem(
+
         DB_CHAVE,
-        JSON.stringify(lancamentos)
+
+        JSON.stringify(
+            lancamentos
+        )
+
     );
 
 }
 
 
-function adicionarLancamento(lancamento) {
+// -----------------------------------------------------
+// ADICIONAR LANÇAMENTO
+// -----------------------------------------------------
+
+function adicionarLancamento(
+    lancamento
+) {
 
     const lancamentos =
         obterLancamentos();
 
-    lancamentos.push(lancamento);
+
+    lancamentos.push(
+        lancamento
+    );
+
 
     salvarLancamentos(
         lancamentos
     );
 
+
     return lancamento;
+
 }
 
+
+// -----------------------------------------------------
+// ATUALIZAR LANÇAMENTO
+// -----------------------------------------------------
 
 function atualizarLancamento(
     id,
@@ -93,16 +172,22 @@ function atualizarLancamento(
     const lancamentos =
         obterLancamentos();
 
+
     const indice =
         lancamentos.findIndex(
-            item => item.id === id
+            item =>
+                item.id === id
         );
 
-    if (indice === -1) {
+
+    if (
+        indice === -1
+    ) {
 
         return false;
 
     }
+
 
     lancamentos[indice] = {
 
@@ -112,23 +197,35 @@ function atualizarLancamento(
 
     };
 
+
     salvarLancamentos(
         lancamentos
     );
 
+
     return true;
+
 }
 
 
-function excluirLancamento(id) {
+// -----------------------------------------------------
+// EXCLUIR LANÇAMENTO
+// -----------------------------------------------------
+
+function excluirLancamento(
+    id
+) {
 
     const lancamentos =
         obterLancamentos();
 
+
     const novosLancamentos =
         lancamentos.filter(
-            item => item.id !== id
+            item =>
+                item.id !== id
         );
+
 
     if (
         novosLancamentos.length ===
@@ -139,25 +236,40 @@ function excluirLancamento(id) {
 
     }
 
+
     salvarLancamentos(
         novosLancamentos
     );
 
+
     return true;
+
 }
 
 
-function obterLancamentoPorId(id) {
+// -----------------------------------------------------
+// OBTER LANÇAMENTO POR ID
+// -----------------------------------------------------
+
+function obterLancamentoPorId(
+    id
+) {
 
     const lancamentos =
         obterLancamentos();
 
+
     return lancamentos.find(
-        item => item.id === id
+        item =>
+            item.id === id
     );
 
 }
 
+
+// -----------------------------------------------------
+// LIMPAR TODOS OS LANÇAMENTOS
+// -----------------------------------------------------
 
 function limparTodosLancamentos() {
 
@@ -171,10 +283,11 @@ function limparTodosLancamentos() {
 // =====================================================
 // LEMBRETES
 // =====================================================
-// Os lembretes possuem armazenamento separado
-// dos lançamentos financeiros.
-// =====================================================
 
+
+// -----------------------------------------------------
+// OBTER LEMBRETES
+// -----------------------------------------------------
 
 function obterLembretes() {
 
@@ -183,11 +296,15 @@ function obterLembretes() {
             DB_LEMBRETES_CHAVE
         );
 
-    if (!dados) {
+
+    if (
+        !dados
+    ) {
 
         return [];
 
     }
+
 
     try {
 
@@ -195,6 +312,7 @@ function obterLembretes() {
             JSON.parse(
                 dados
             );
+
 
         if (
             !Array.isArray(
@@ -205,6 +323,7 @@ function obterLembretes() {
             return [];
 
         }
+
 
         return lembretes;
 
@@ -219,12 +338,17 @@ function obterLembretes() {
             erro
         );
 
+
         return [];
 
     }
 
 }
 
+
+// -----------------------------------------------------
+// SALVAR LEMBRETES
+// -----------------------------------------------------
 
 function salvarLembretes(
     lembretes
@@ -243,6 +367,10 @@ function salvarLembretes(
 }
 
 
+// -----------------------------------------------------
+// ADICIONAR LEMBRETE
+// -----------------------------------------------------
+
 function adicionarLembrete(
     lembrete
 ) {
@@ -250,18 +378,25 @@ function adicionarLembrete(
     const lembretes =
         obterLembretes();
 
+
     lembretes.push(
         lembrete
     );
+
 
     salvarLembretes(
         lembretes
     );
 
+
     return lembrete;
 
 }
 
+
+// -----------------------------------------------------
+// ATUALIZAR LEMBRETE
+// -----------------------------------------------------
 
 function atualizarLembrete(
     id,
@@ -271,11 +406,13 @@ function atualizarLembrete(
     const lembretes =
         obterLembretes();
 
+
     const indice =
         lembretes.findIndex(
             item =>
                 item.id === id
         );
+
 
     if (
         indice === -1
@@ -285,6 +422,7 @@ function atualizarLembrete(
 
     }
 
+
     lembretes[indice] = {
 
         ...lembretes[indice],
@@ -293,14 +431,20 @@ function atualizarLembrete(
 
     };
 
+
     salvarLembretes(
         lembretes
     );
+
 
     return true;
 
 }
 
+
+// -----------------------------------------------------
+// EXCLUIR LEMBRETE
+// -----------------------------------------------------
 
 function excluirLembrete(
     id
@@ -309,11 +453,13 @@ function excluirLembrete(
     const lembretes =
         obterLembretes();
 
+
     const novosLembretes =
         lembretes.filter(
             item =>
                 item.id !== id
         );
+
 
     if (
         novosLembretes.length ===
@@ -324,14 +470,20 @@ function excluirLembrete(
 
     }
 
+
     salvarLembretes(
         novosLembretes
     );
+
 
     return true;
 
 }
 
+
+// -----------------------------------------------------
+// OBTER LEMBRETE POR ID
+// -----------------------------------------------------
 
 function obterLembretePorId(
     id
@@ -340,6 +492,7 @@ function obterLembretePorId(
     const lembretes =
         obterLembretes();
 
+
     return lembretes.find(
         item =>
             item.id === id
@@ -347,6 +500,10 @@ function obterLembretePorId(
 
 }
 
+
+// -----------------------------------------------------
+// LIMPAR TODOS OS LEMBRETES
+// -----------------------------------------------------
 
 function limparTodosLembretes() {
 
@@ -360,24 +517,33 @@ function limparTodosLembretes() {
 // =====================================================
 // BANCOS
 // =====================================================
-// Os bancos possuem armazenamento completamente
-// separado dos lançamentos e dos lembretes.
 //
-// O saldo bancário é apenas INFORMATIVO.
-// Ele NÃO participa dos cálculos de entradas,
-// saídas ou saldo dos lançamentos.
+// Nesta etapa mantemos as funções de armazenamento
+// para compatibilidade com o aplicativo atual.
+//
+// A lógica da tela de Bancos será organizada no
+// bancos.js na ETAPA 2.
+//
+// A chave permanece:
+// "minhas_financas_bancos"
 // =====================================================
 
+
+// -----------------------------------------------------
+// OBTER BANCOS
+// -----------------------------------------------------
 
 function obterBancos() {
 
     const dados =
         localStorage.getItem(
-            DB_BANCOS_CHAVE
+            DB_BANCOS_STORAGE_CHAVE
         );
 
 
-    if (!dados) {
+    if (
+        !dados
+    ) {
 
         return [];
 
@@ -424,9 +590,9 @@ function obterBancos() {
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // SALVAR BANCOS
-// =====================================================
+// -----------------------------------------------------
 
 function salvarBancos(
     bancos
@@ -434,7 +600,7 @@ function salvarBancos(
 
     localStorage.setItem(
 
-        DB_BANCOS_CHAVE,
+        DB_BANCOS_STORAGE_CHAVE,
 
         JSON.stringify(
             bancos
@@ -445,9 +611,9 @@ function salvarBancos(
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // ADICIONAR BANCO
-// =====================================================
+// -----------------------------------------------------
 
 function adicionarBanco(
     banco
@@ -472,9 +638,9 @@ function adicionarBanco(
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // ATUALIZAR BANCO
-// =====================================================
+// -----------------------------------------------------
 
 function atualizarBanco(
     id,
@@ -520,9 +686,9 @@ function atualizarBanco(
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // EXCLUIR BANCO
-// =====================================================
+// -----------------------------------------------------
 
 function excluirBanco(
     id
@@ -559,9 +725,9 @@ function excluirBanco(
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // OBTER BANCO POR ID
-// =====================================================
+// -----------------------------------------------------
 
 function obterBancoPorId(
     id
@@ -579,14 +745,14 @@ function obterBancoPorId(
 }
 
 
-// =====================================================
+// -----------------------------------------------------
 // LIMPAR TODOS OS BANCOS
-// =====================================================
+// -----------------------------------------------------
 
 function limparTodosBancos() {
 
     localStorage.removeItem(
-        DB_BANCOS_CHAVE
+        DB_BANCOS_STORAGE_CHAVE
     );
 
 }
